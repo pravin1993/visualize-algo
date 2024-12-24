@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Operations } from "../enums/operation";
+import { Context } from "@/component/ContextProvider";
 
 export const delay = (delayTime = 1000) =>
   new Promise((resolve,_) => {
@@ -7,9 +9,14 @@ export const delay = (delayTime = 1000) =>
     },delayTime);
   });
 
-export function* swap(arr: number[], i: number, j: number):Generator<{operation: Operations, positions:number[]}>{
-    yield {operation: Operations.SWAP, positions:[i,j]} ;
+export function swap(arr: number[], i: number, j: number){
+    console.log("inside swap")
     const temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
+    // yield* getOperation(Operations.SWAP, [i,j])
+}
+
+export function* getOperation(operation: Operations, positions:[number, number]){
+    yield {operation, positions}
 }
