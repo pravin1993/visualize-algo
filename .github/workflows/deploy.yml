@@ -1,0 +1,17 @@
+name: Deploy as Github pages 
+
+on: 
+    push:
+        branches: [main]
+
+jobs: 
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: action/checkout@main
+            -   uses: action/setup-node@main
+                with: 
+                    node-version: 18
+            -   run: npm ci
+            -   run: npm run build
+

@@ -1,8 +1,5 @@
-import React, { useContext, useEffect } from 'react'
 import AnimateVisualizerComponent from './AnimateVisualizerComponent';
 import { useAlgo } from '@/hooks/useAlgo';
-import { Context } from './ContextProvider';
-
 function Visualizer() {
 
     const {swapPositions, highlightPositions, dataArr, sorted} = useAlgo()

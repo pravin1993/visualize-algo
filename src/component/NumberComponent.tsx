@@ -1,5 +1,3 @@
-import React from "react";
-
 function NumberComponent({ animation, value, highlight, isSorted }: any) {
   return (
     <div

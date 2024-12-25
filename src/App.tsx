@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import "./index.css";
-import LandingComponent from "./component/LandingComponent";
 import Visualizer from "./component/visualizer";
 import ContextProvider from "./component/ContextProvider";
 

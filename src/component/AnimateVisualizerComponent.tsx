@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import NumberComponent from "./NumberComponent";
-import { delay, swap } from "@/utils/helper";
 function AnimateVisualizerComponent({toSwap=[-1,-1], highlightPositions=[-1,-1],dataArr=[1,2,3,4], sorted=[]}:any) {
   const [state, setState] = useState<string[]>([]);
   useEffect(() => {
