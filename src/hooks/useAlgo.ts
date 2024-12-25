@@ -12,7 +12,6 @@ function useAlgo() {
   const sorted = useRef(new Array(dataArr.current.length).fill(false))
   useEffect(()=>{
      async function fetcher(){
-        
     for await (const operation of bubbleStore(dataArr.current, sorted.current)){
         //Resetting the states to remove the highlight to avoid overlapping of highlight and swap animations
         setHighlightPositions([-1, -1]);
@@ -20,7 +19,7 @@ function useAlgo() {
         switch(operation.operation){
             case Operations.HIGHLIGHT:{
                 setHighlightPositions(operation.positions)
-                await delay(500)
+                await delay(1000)
                 break;
             }
             case Operations.SWAP:{

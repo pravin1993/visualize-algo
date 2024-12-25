@@ -8,10 +8,10 @@ export const delay = (delayTime = 1000) =>
   });
 
 export function swap(arr: number[], i: number, j: number){
-    console.log("inside swap")
     const temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
+    console.log(arr)
     // yield* getOperation(Operations.SWAP, [i,j])
 }
 
