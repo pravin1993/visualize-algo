@@ -20,7 +20,7 @@ function useAlgo() {
         switch(operation.operation){
             case Operations.HIGHLIGHT:{
                 setHighlightPositions(operation.positions)
-                await delay(1000)
+                await delay(500)
                 break;
             }
             case Operations.SWAP:{
