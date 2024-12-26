@@ -1,28 +1,38 @@
-import { getOperation, swap } from "@/utils/helper";
+import { PositionPair } from "@/types/types";
+import { delay, getOperation, swap } from "@/utils/helper";
 import { Operations } from "@enums/operation";
 
-export function* quickSort (arr:number[], start=0, end=arr.length-1) {
-
-    if(start>=end){
-        return;
-    }
-    let pivot = partition(arr, start, end)
-    yield getOperation(Operations.PIVOT, )
-    quickSort(arr, start, pivot-1)
-    quickSort(arr, pivot+1, end)
-    console.log(arr)
+export async function* quickSort(
+  arr: number[],
+  start = 0,
+  end = arr.length - 1
+): AsyncGenerator<{ operation: Operations; positions: number | PositionPair }> {
+  if (start >= end) {
+    return;
+  }
+  let pivot = yield* partition(arr, start, end);
+  yield* getOperation(Operations.PIVOT, pivot);
+  yield* quickSort(arr, start, pivot - 1);
+  yield* quickSort(arr, pivot + 1, end);
 }
 
-
-function partition(parr:number[], pStart:number, pEnd:number): number{
-    let pivotIndex = pStart
-    for (let index = pStart; index < pEnd; index++) {
-        if(parr[pEnd]>parr[index]){
-            swap(parr, pivotIndex, index)
-            pivotIndex++
-
-        }
+async function* partition(
+  parr: number[],
+  pStart: number,
+  pEnd: number
+): AsyncGenerator<{ operation: Operations; positions: number | PositionPair }> {
+  let pivotIndex = pStart;
+  for (let index = pStart; index < pEnd; index++) {
+    yield* getOperation(Operations.HIGHLIGHT, [pEnd, index]);
+    if (parr[pEnd] > parr[index]) {
+        if(pivotIndex !== index){
+      yield* getOperation(Operations.SWAP, [pivotIndex, index])
+      swap(parr, pivotIndex, index);
     }
-    swap(parr,pivotIndex, pEnd);
-    return pivotIndex
+      pivotIndex++;
+    }
+  }
+  yield* getOperation(Operations.SWAP, [pivotIndex, pEnd]);
+  swap(parr, pivotIndex, pEnd);
+  return pivotIndex;
 }
